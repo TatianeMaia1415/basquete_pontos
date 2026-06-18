@@ -5,18 +5,26 @@ class ScoreButton extends StatelessWidget {
     super.key,
     required this.label,
     required this.onPressed,
+    required this.icon,
+    required this.color,
     this.enabled = true,
   });
 
   final String label;
   final void Function() onPressed;
+  final IconData icon;
+  final Color color;
   final bool enabled;
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
+    return ElevatedButton.icon(
       onPressed: enabled ? onPressed : null,
-      child: Text(label),
+      icon: Icon(icon, color: enabled ? color : Colors.grey),
+      label: Text(label),
+      style: ElevatedButton.styleFrom(
+        side: BorderSide(color: enabled ? color : Colors.grey, width: 1.5),
+      ),
     );
   }
 }
